@@ -18,7 +18,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView pic;
-    private TextView temp, date;
+    private TextView temp, loc;
     private Button change;
 
     @Override
@@ -29,15 +29,23 @@ public class MainActivity extends AppCompatActivity {
 
         pic = findViewById(R.id.tempPic);
         temp = findViewById(R.id.temp);
-        date = findViewById(R.id.date);
+        loc = findViewById(R.id.location);
         change = findViewById(R.id.change);
+
+        Function.placeIdTask asyncTask =new Function.placeIdTask(new Function.AsyncResponse() {
+            @Override
+            public void processFinish(String output1, String output2, String output3) {
+                loc.setText(output1);
+                temp.setText(output2);
+            }
+        });
+        asyncTask.execute("40.8448", "-73.8648"); //  asyncTask.execute("Latitude", "Longitude")
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Clothes.class);
                 startActivity(intent);
-                new API(temp).execute();
             }
         });
     }

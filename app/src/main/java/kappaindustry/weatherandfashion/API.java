@@ -15,10 +15,11 @@ import java.net.URL;
 class API extends AsyncTask<Void, Void, String> {
     private Exception exception;
 
-    private final String urlField = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
+    private final String urlField = "http://openweathermap.org/city/5110253";
     private final String apiKey = "0fe4b095e453ce3f432586038d5b7f6f";
 
     private TextView temp;
+    private String response;
 
     public API(TextView tv) {
         tv = temp;
@@ -43,7 +44,8 @@ class API extends AsyncTask<Void, Void, String> {
                     stringBuilder.append(line).append("\n");
                 }
                 bufferedReader.close();
-                return stringBuilder.toString();
+                response = stringBuilder.toString();
+                return response;
             }
             finally{
                 connection.disconnect();
@@ -54,12 +56,13 @@ class API extends AsyncTask<Void, Void, String> {
         }
     }
 
-    @Override
-    protected void onPostExecute(String response) {
+    protected void onPostExecute() {
         if(response == null) {
             response = "THERE WAS AN ERROR";
         }
-        Log.i("INFO", response);
-        temp.setText(response);
+        else {
+            Log.i("INFO", response);
+            temp.setText(response);
+        }
     }
 }
