@@ -32,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
         loc = findViewById(R.id.location);
         change = findViewById(R.id.change);
 
-        Function.placeIdTask asyncTask =new Function.placeIdTask(new Function.AsyncResponse() {
+        Function.placeIdTask asyncTask = new Function.placeIdTask(new Function.AsyncResponse() {
             @Override
             public void processFinish(String output1, String output2, String output3) {
                 loc.setText(output1);
-                temp.setText(output2);
+                double cel = java.lang.Double.parseDouble(output2.substring(0,4));
+                temp.setText(celToFah(cel)+"\u00b0");
             }
         });
-        asyncTask.execute("40.8448", "-73.8648"); //  asyncTask.execute("Latitude", "Longitude")
+
+        asyncTask.execute("40.8448", "-73.8648");
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,5 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private double celToFah(double temp){
+        return temp * 1.8 + 32;
     }
 }
