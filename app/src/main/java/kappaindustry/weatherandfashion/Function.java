@@ -20,7 +20,7 @@ public class Function {
 
     public interface AsyncResponse {
 
-        void processFinish(String output1, String output2, String output3);
+        void processFinish(String output1, String output2, String output3, String output4, String output5);
     }
 
     public static class placeIdTask extends AsyncTask<String, Void, JSONObject> {
@@ -54,9 +54,12 @@ public class Function {
                     DateFormat df = DateFormat.getDateTimeInstance();
 
                     String city = json.getString("name").toUpperCase(Locale.US) + ", " + json.getJSONObject("sys").getString("country");
-                    String temperature = String.format("%.2f", main.getDouble("temp"))+ "°";
+                    String description = details.getString("description").toUpperCase(Locale.US);
+                    String temperature = String.format("%.2f", main.getDouble("temp"));
 
-                    delegate.processFinish(city, temperature,""+ (json.getJSONObject("sys").getLong("sunrise") * 1000));
+                    String updatedOn = df.format(new Date(json.getLong("dt")*1000));
+
+                    delegate.processFinish(city, description, temperature, updatedOn, ""+ (json.getJSONObject("sys").getLong("sunrise") * 1000));
 
                 }
             } catch (JSONException e) {

@@ -18,7 +18,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView pic;
-    private TextView temp, loc;
+    private TextView temp, loc, description, date;
     private Button change;
 
     @Override
@@ -31,13 +31,18 @@ public class MainActivity extends AppCompatActivity {
         temp = findViewById(R.id.temp);
         loc = findViewById(R.id.location);
         change = findViewById(R.id.change);
+        description = findViewById(R.id.description);
+        date = findViewById(R.id.date);
 
         Function.placeIdTask asyncTask = new Function.placeIdTask(new Function.AsyncResponse() {
             @Override
-            public void processFinish(String output1, String output2, String output3) {
+            public void processFinish(String output1, String output2, String output3, String output4, String output5) {
                 loc.setText(output1);
-                double cel = java.lang.Double.parseDouble(output2.substring(0,4));
+                description.setText(output2);
+                double cel = java.lang.Double.parseDouble(output3);
+                cel = Math.round(cel);
                 temp.setText(celToFah(cel)+"\u00b0");
+                date.setText("Last Updated " + output4);
             }
         });
 
