@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void processFinish(String output1, String output2, String output3, String output4, String output5) {
                 loc.setText(output1);
                 description.setText(output2);
+                iconChange(output2);
                 double cel = java.lang.Double.parseDouble(output3);
                 cel = Math.round(cel);
                 temp.setText(celToFah(cel)+"\u00b0");
@@ -59,5 +60,22 @@ public class MainActivity extends AppCompatActivity {
 
     private double celToFah(double temp){
         return temp * 1.8 + 32;
+    }
+
+    private void iconChange(String des){
+        String weatherDes = des;
+        Log.d("Work",weatherDes);
+        if(weatherDes.indexOf("RAIN") != -1){
+            Log.d("Weather","Rain");
+            pic.setImageResource(R.drawable.raining);
+        }
+        else if (weatherDes.indexOf("SNOW") != -1){
+            Log.d("Weather","Snow");
+            pic.setImageResource(R.drawable.snowing);
+        }
+        else if(weatherDes.indexOf("CLEAR") != -1){
+            Log.d("Weather","Sunny");
+            pic.setImageResource(R.drawable.sunny);
+        }
     }
 }
