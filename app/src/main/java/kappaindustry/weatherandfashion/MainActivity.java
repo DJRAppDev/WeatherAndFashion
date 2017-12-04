@@ -49,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         asyncTask.execute("40.8448", "-73.8648");
 
+        int resID1 = MainActivity.this.getResources().getIdentifier("wintercoat1", "drawable",MainActivity.this.getPackageName());
+        int resID2 = MainActivity.this.getResources().getIdentifier("winterhat1", "drawable",MainActivity.this.getPackageName());
+        int resID3 = MainActivity.this.getResources().getIdentifier("winterpants1", "drawable",MainActivity.this.getPackageName());
+        Log.d("ResID1",resID1+"");
+        Log.d("ResID2",resID2+"");
+        Log.d("ResID3",resID3+"");
+
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         else if(weatherDes.indexOf("CLEAR") != -1){
             Log.d("Weather","Sunny");
             pic.setImageResource(R.drawable.sunny);
+        }
+        else if(weatherDes.indexOf("MIST") != -1){
+            pic.setImageResource(R.drawable.mist);
         }
     }
 }

@@ -22,8 +22,8 @@ public class Clothes extends AppCompatActivity {
     }
 
     public void setClothing() {
-        hat.setImageResource(R.drawable.winterHat);
-        outerwear.setImageResource(R.drawable.winterCoat);
-        pants.setImageResource(R.drawable.winterPants);
+        hat.setImageResource(R.drawable.winterhat1);
+        outerwear.setImageResource(R.drawable.wintercoat1);
+        pants.setImageResource(R.drawable.winterpants1);
     }
 }
