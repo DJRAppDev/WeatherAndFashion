@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView pic;
     private TextView temp, loc, description, date;
     private Button change;
+    private double cel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 loc.setText(output1);
                 description.setText(output2);
                 iconChange(output2);
-                double cel = java.lang.Double.parseDouble(output3);
+                cel = java.lang.Double.parseDouble(output3);
                 cel = Math.round(cel);
-                temp.setText(celToFah(cel)+"\u00b0");
+                cel = celToFah(cel);
+                temp.setText(cel + "\u00b0");
                 date.setText("Last Updated " + output4);
             }
         });
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Info.class);
+                intent.putExtra("Temp",cel+"");
                 startActivity(intent);
             }
         });

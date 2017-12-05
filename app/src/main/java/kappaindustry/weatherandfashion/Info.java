@@ -16,10 +16,13 @@ public class Info extends AppCompatActivity {
     private EditText age;
     private Spinner genderSpinner, styleSpinner;
     private Button submit;
+    private String temp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info);
+
+        temp = getIntent().getStringExtra("Temp");
 
         setSpinner();
         btEventListener();
@@ -50,6 +53,7 @@ public class Info extends AppCompatActivity {
                 intent.putExtra("Age", age.getText().toString());
                 intent.putExtra("Gender", genderSpinner.getSelectedItem().toString());
                 intent.putExtra("Style", styleSpinner.getSelectedItem().toString());
+                intent.putExtra("Temp",temp+"");
                 startActivity(intent);
             }
         });

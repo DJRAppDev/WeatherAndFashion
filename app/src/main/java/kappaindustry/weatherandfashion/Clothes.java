@@ -11,7 +11,7 @@ public class Clothes extends AppCompatActivity {
     private ImageView hat;
     private ImageView outerwear;
     private ImageView pants;
-    private String age, gender, style;
+    private String age, gender, style, temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class Clothes extends AppCompatActivity {
         age = getIntent().getStringExtra("Age");
         gender = getIntent().getStringExtra("Gender");
         style = getIntent().getStringExtra("Style");
+        temp = getIntent().getStringExtra("Temp");
 
         hat = findViewById(R.id.hat);
         outerwear = findViewById(R.id.outerwear);
