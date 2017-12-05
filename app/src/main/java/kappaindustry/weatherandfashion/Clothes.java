@@ -11,7 +11,7 @@ public class Clothes extends AppCompatActivity {
     private ImageView hat;
     private ImageView outerwear;
     private ImageView pants;
-    private String age, gender, style, temp;
+    private String age, gender, style, temp, range;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,9 @@ public class Clothes extends AppCompatActivity {
         hat = findViewById(R.id.hat);
         outerwear = findViewById(R.id.outerwear);
         pants = findViewById(R.id.pants);
+
+        range = toRangeTemp(temp);
+        Log.d("TEMPRANGE",range);
 
         setImage("none","formaljacket","none");
     }
@@ -49,5 +52,20 @@ public class Clothes extends AppCompatActivity {
         else{
             pants.setImageResource(R.drawable.white);
         }
+    }
+
+    private String toRangeTemp(String tempString){
+        double tempDouble = java.lang.Double.parseDouble(tempString);
+        String range = "";
+        if(tempDouble > -1000.0 && tempDouble <= 40.0){
+            range = "-1000 - 40";
+        }
+        else if(tempDouble > 40.0 && tempDouble <= 60.0){
+            range = "40 - 60";
+        }
+        else if(tempDouble > 60.0 && tempDouble <= 1000.0){
+            range = "60 - 1000";
+        }
+        return range;
     }
 }
