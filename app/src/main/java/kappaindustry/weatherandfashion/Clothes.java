@@ -27,12 +27,27 @@ public class Clothes extends AppCompatActivity {
         outerwear = findViewById(R.id.outerwear);
         pants = findViewById(R.id.pants);
 
-        setClothing();
+        setImage("none","formaljacket","none");
     }
 
-    public void setClothing() {
-        hat.setImageResource(R.drawable.winterhat1);
-        outerwear.setImageResource(R.drawable.wintercoat1);
-        pants.setImageResource(R.drawable.winterpants1);
+    private void setImage(String hatname, String out, String pantsname){
+        if(hatname.equals("none") == false){
+            int hatID = this.getResources().getIdentifier(hatname, "drawable", this.getPackageName());
+            hat.setImageResource(hatID);
+        }
+        else {
+            hat.setImageResource(R.drawable.white);
+        }
+
+        int outID = this.getResources().getIdentifier(out, "drawable", this.getPackageName());
+        outerwear.setImageResource(outID);
+
+        if(pantsname.equals("none") == false){
+            int pantsID = this.getResources().getIdentifier(pantsname, "drawable", this.getPackageName());
+            pants.setImageResource(pantsID);
+        }
+        else{
+            pants.setImageResource(R.drawable.white);
+        }
     }
 }
