@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Clothes.class);
+                Intent intent = new Intent(MainActivity.this, Info.class);
                 startActivity(intent);
             }
         });
@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(weatherDes.indexOf("MIST") != -1){
             pic.setImageResource(R.drawable.mist);
+        }
+        else if(weatherDes.indexOf("CLOUD") != -1){
+            pic.setImageResource(R.drawable.cloud);
         }
     }
 }

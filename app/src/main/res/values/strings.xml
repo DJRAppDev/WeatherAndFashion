@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">WeatherAndFashion</string>
+
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="fashionstyle">
+        <item>Casual</item>
+        <item>Formal</item>
+    </string-array>
 </resources>
