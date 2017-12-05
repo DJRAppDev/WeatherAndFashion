@@ -1,5 +1,6 @@
 package kappaindustry.weatherandfashion;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.fstyle.library.helper.AssetSQLiteOpenHelperFactory;
+
 public class Clothes extends AppCompatActivity {
     private ImageView hat;
     private ImageView outerwear;
     private ImageView pants;
     private String age, gender, style, temp, range;
+    private AppDatabase db;
+    private Clothing clothing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,10 @@ public class Clothes extends AppCompatActivity {
         range = toRangeTemp(temp);
         Log.d("TEMPRANGE",range);
 
-        setImage("none","formaljacket","none");
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "clothing.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        clothing = db.clothingDao().getClothing(range,gender,style);
+
+        setImage(clothing.getHat(),clothing.getOuterwear(),clothing.getPants());
     }
 
     private void setImage(String hatname, String out, String pantsname){
